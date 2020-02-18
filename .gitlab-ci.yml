@@ -1,0 +1,23 @@
+image: ruby:2.7
+
+stages:
+  - rspec
+  - rubocop
+  - deploy
+
+before_script:
+  - bundle install
+
+rspec:
+  stage: rspec
+  script:
+    - bundle exec rspec
+
+rubocop:
+  stage: rubocop
+  script:
+    - bundle exec rubocop
+
+deploy:
+  stage: deploy
+  only: master
